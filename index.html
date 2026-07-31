@@ -22,44 +22,50 @@
             overflow: hidden;
         }
 
-        /* ========== OJOS ETÉREOS (Centinelas) ========== */
-        .ojo-centinela {
+        /* ========== CONTENEDOR DE LOS DOS OJOS GIGANTES ========== */
+        .ojos-fondo {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(90vw, 90vh);
+            height: min(50vw, 50vh); /* Altura suficiente para dos ojos grandes */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
             z-index: 0;
             pointer-events: none;
-            filter: drop-shadow(0 0 15px rgba(20, 80, 180, 0.25));
-            opacity: 0.18;           /* Muy sutiles */
-            transition: opacity 0.3s ease;
+            opacity: 0.2;           /* Misma atmósfera etérea */
+            filter: drop-shadow(0 0 60px rgba(20, 80, 180, 0.3));
+            animation: parpadeoFondo 5s infinite ease-in-out;
         }
 
-        .ojo-izquierdo {
-            top: 20px;
-            left: 20px;
-            width: 180px;
-            height: 180px;
-            transform: rotate(-8deg); /* Ligera inclinación hacia el centro */
+        @keyframes parpadeoFondo {
+            0%, 90%, 100% { opacity: 0.2; }
+            95% { opacity: 0.04; }
         }
 
-        .ojo-derecho {
-            top: 20px;
-            right: 20px;
-            width: 180px;
-            height: 180px;
-            transform: rotate(8deg);
+        /* Cada ojo individual */
+        .ojo-fondo {
+            flex: 1;
+            aspect-ratio: 1 / 1;
+            max-width: 45%;
+            position: relative;
         }
 
-        .ojo-centinela .eye-shape {
+        .ojo-fondo .eye-shape {
             position: relative;
             width: 100%;
             height: 100%;
             border-radius: 50%;
             background: radial-gradient(ellipse at center, rgba(8,10,14,0.95) 0%, rgba(2,2,4,0.95) 70%);
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.9), 0 0 30px rgba(15,60,140,0.18);
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.95), 0 0 60px rgba(15,60,140,0.2);
             overflow: hidden;
             clip-path: ellipse(50% 46% at 50% 50%);
         }
 
-        .ojo-centinela .sclera {
+        .ojo-fondo .sclera {
             position: absolute;
             inset: 0;
             background: radial-gradient(circle at 30% 40%, rgba(120,20,20,0.06), transparent 40%),
@@ -67,7 +73,7 @@
                         radial-gradient(ellipse at center, #0a0b0d 0%, #030304 80%);
         }
 
-        .ojo-centinela .iris-container {
+        .ojo-fondo .iris-container {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -76,28 +82,28 @@
             transform: translate(-50%, -50%);
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 0 20px 4px rgba(30,110,220,0.4), 
-                        0 0 40px 12px rgba(20,80,180,0.2),
-                        inset 0 0 10px rgba(0,0,0,0.7);
+            box-shadow: 0 0 40px 10px rgba(30,110,220,0.45), 
+                        0 0 80px 30px rgba(20,80,180,0.2),
+                        inset 0 0 12px rgba(0,0,0,0.7);
         }
 
-        .ojo-centinela .iris {
+        .ojo-fondo .iris {
             position: absolute;
             inset: 0;
             border-radius: 50%;
             background: radial-gradient(circle at 50% 50%, #000308 0%, #000308 18%, transparent 19%),
                         repeating-conic-gradient(from 0deg, rgba(255,255,255,0.04) 0deg 2deg, rgba(0,0,0,0.08) 2deg 4deg),
                         radial-gradient(circle at 50% 50%, #63b3ff 0%, #1e6fd9 22%, #0b3d91 46%, #041428 72%, #000 100%);
-            animation: irisRotate 30s linear infinite;
+            animation: irisRotateFondo 30s linear infinite;
         }
 
-        @keyframes irisRotate {
+        @keyframes irisRotateFondo {
             0%   { filter: hue-rotate(0deg) brightness(1); }
-            50%  { filter: hue-rotate(6deg) brightness(1.1); }
+            50%  { filter: hue-rotate(6deg) brightness(1.15); }
             100% { filter: hue-rotate(0deg) brightness(1); }
         }
 
-        .ojo-centinela .pupil {
+        .ojo-fondo .pupil {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -106,21 +112,21 @@
             transform: translate(-50%, -50%);
             background: radial-gradient(circle at 45% 40%, #0a0d16 0%, #000000 70%);
             border-radius: 50%;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.95);
         }
 
-        .ojo-centinela .highlight {
+        .ojo-fondo .highlight {
             position: absolute;
             width: 18%;
             height: 18%;
             top: 26%;
             left: 30%;
-            background: rgba(255,255,255,0.65);
+            background: rgba(255,255,255,0.7);
             border-radius: 50%;
             filter: blur(2px);
             opacity: 0.8;
         }
-        .ojo-centinela .highlight.small {
+        .ojo-fondo .highlight.small {
             width: 7%;
             height: 7%;
             top: 56%;
@@ -128,7 +134,7 @@
             opacity: 0.3;
         }
 
-        .ojo-centinela .vein {
+        .ojo-fondo .vein {
             position: absolute;
             background: rgba(160,40,40,0.12);
             filter: blur(1.5px);
@@ -211,9 +217,10 @@
             text-transform: uppercase;
         }
         @media (max-width: 500px) {
-            .ojo-centinela {
-                width: 100px;
-                height: 100px;
+            .ojos-fondo {
+                width: 95vw;
+                height: 55vw;
+                gap: 4%;
             }
             .gear { width: 120px; height: 120px; }
             .countdown { font-size: 2.8rem; padding: 14px 18px; }
@@ -225,32 +232,36 @@
 </head>
 <body>
 
-    <!-- ========== OJO IZQUIERDO ========== -->
-    <div class="ojo-centinela ojo-izquierdo" id="ojoIzq">
-        <div class="eye-shape">
-            <div class="sclera"></div>
-            <div class="vein" style="width:50%; height:2px; top:34%; left:5%; transform:rotate(8deg);"></div>
-            <div class="vein" style="width:35%; height:1.5px; top:60%; left:50%; transform:rotate(-12deg);"></div>
-            <div class="iris-container">
-                <div class="iris"></div>
-                <div class="pupil"></div>
-                <div class="highlight"></div>
-                <div class="highlight small"></div>
+    <!-- ========== DOS OJOS GIGANTES DE FONDO ========== -->
+    <div class="ojos-fondo">
+        <!-- Ojo izquierdo -->
+        <div class="ojo-fondo">
+            <div class="eye-shape">
+                <div class="sclera"></div>
+                <div class="vein" style="width:55%; height:2px; top:36%; left:8%; transform:rotate(8deg);"></div>
+                <div class="vein" style="width:38%; height:1.5px; top:60%; left:52%; transform:rotate(-12deg);"></div>
+                <div class="vein" style="width:30%; height:1.5px; top:28%; left:58%; transform:rotate(15deg);"></div>
+                <div class="iris-container">
+                    <div class="iris"></div>
+                    <div class="pupil"></div>
+                    <div class="highlight"></div>
+                    <div class="highlight small"></div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- ========== OJO DERECHO ========== -->
-    <div class="ojo-centinela ojo-derecho" id="ojoDer">
-        <div class="eye-shape">
-            <div class="sclera"></div>
-            <div class="vein" style="width:50%; height:2px; top:34%; left:5%; transform:rotate(8deg);"></div>
-            <div class="vein" style="width:35%; height:1.5px; top:60%; left:50%; transform:rotate(-12deg);"></div>
-            <div class="iris-container">
-                <div class="iris"></div>
-                <div class="pupil"></div>
-                <div class="highlight"></div>
-                <div class="highlight small"></div>
+        <!-- Ojo derecho -->
+        <div class="ojo-fondo">
+            <div class="eye-shape">
+                <div class="sclera"></div>
+                <div class="vein" style="width:55%; height:2px; top:36%; left:8%; transform:rotate(8deg);"></div>
+                <div class="vein" style="width:38%; height:1.5px; top:60%; left:52%; transform:rotate(-12deg);"></div>
+                <div class="vein" style="width:30%; height:1.5px; top:28%; left:58%; transform:rotate(15deg);"></div>
+                <div class="iris-container">
+                    <div class="iris"></div>
+                    <div class="pupil"></div>
+                    <div class="highlight"></div>
+                    <div class="highlight small"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -383,23 +394,24 @@
         actualizarContador();
         setInterval(actualizarContador, 1000);
 
-        // ========== PARPADEO ALEATORIO DE LOS OJOS (INDEPENDIENTE) ==========
-        function blinkRandom(ojoElement) {
-            // Parpadeo: reducimos opacidad drásticamente durante 300ms
-            ojoElement.style.opacity = '0.02';
+        // ========== PARPADEO ADICIONAL CON CLIC (opcional) ==========
+        document.body.addEventListener('click', () => {
+            const contenedor = document.querySelector('.ojos-fondo');
+            contenedor.style.animation = 'none';
+            void contenedor.offsetWidth;
+            contenedor.style.animation = 'parpadeoClic 0.6s ease-in-out';
             setTimeout(() => {
-                ojoElement.style.opacity = '0.18';
-                // Programar siguiente parpadeo
-                const next = 2000 + Math.random() * 6000;
-                setTimeout(() => blinkRandom(ojoElement), next);
-            }, 300);
-        }
+                contenedor.style.animation = 'parpadeoFondo 5s infinite ease-in-out';
+            }, 600);
+        });
 
-        // Iniciar parpadeos para cada ojo con un retardo inicial distinto
-        const ojoIzq = document.getElementById('ojoIzq');
-        const ojoDer = document.getElementById('ojoDer');
-        if (ojoIzq) setTimeout(() => blinkRandom(ojoIzq), 1000);
-        if (ojoDer) setTimeout(() => blinkRandom(ojoDer), 3500);
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes parpadeoClic {
+                0%, 100% { opacity: 0.2; }
+                50%      { opacity: 0.03; }
+            }
+        `, styleSheet.cssRules.length);
     </script>
 </body>
 </html>
