@@ -29,14 +29,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: min(90vw, 90vh);
-            height: min(50vw, 50vh); /* Altura suficiente para dos ojos grandes */
+            height: min(50vw, 50vh);
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 5%;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.2;           /* Misma atmósfera etérea */
+            opacity: 0.2;
             filter: drop-shadow(0 0 60px rgba(20, 80, 180, 0.3));
             animation: parpadeoFondo 5s infinite ease-in-out;
         }
@@ -46,7 +46,6 @@
             95% { opacity: 0.04; }
         }
 
-        /* Cada ojo individual */
         .ojo-fondo {
             flex: 1;
             aspect-ratio: 1 / 1;
@@ -233,7 +232,7 @@
 <body>
 
     <!-- ========== DOS OJOS GIGANTES DE FONDO ========== -->
-    <div class="ojos-fondo">
+    <div class="ojos-fondo" id="ojosFondo">
         <!-- Ojo izquierdo -->
         <div class="ojo-fondo">
             <div class="eye-shape">
@@ -267,7 +266,7 @@
     </div>
 
     <!-- ========== CONTENIDO PRINCIPAL ========== -->
-    <div class="container">
+    <div class="container" id="contenidoPrincipal">
         <div class="gear">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -368,6 +367,29 @@
     </div>
 
     <script>
+        // ========== BLOQUEO DE UNA SOLA VISTA (con acceso admin) ==========
+        (function() {
+            // Si la URL contiene ?admin=engranaje2026, ignoramos el bloqueo
+            const esAdmin = window.location.search.indexOf('admin=engranaje2026') !== -1;
+            
+            if (!esAdmin) {
+                const yaVio = localStorage.getItem('invitacionHiramVista');
+                if (yaVio) {
+                    // Ya entró antes: ocultamos todo y mostramos mensaje
+                    document.getElementById('ojosFondo').style.display = 'none';
+                    document.getElementById('contenidoPrincipal').innerHTML = `
+                        <div style="display:flex; align-items:center; justify-content:center; height:80vh; color:#3a7ab8; font-family:'Segoe UI',sans-serif; text-align:center; flex-direction:column;">
+                            <h2 style="font-weight:300; letter-spacing:3px; margin-bottom:15px;">ESTA INVITACIÓN YA FUE VISUALIZADA</h2>
+                            <p style="color:#8aa0b8; font-size:1.1rem;">Gracias por tu interés.</p>
+                        </div>`;
+                    return; // Detiene la ejecución del resto del script
+                } else {
+                    // Primera visita: guardamos la marca
+                    localStorage.setItem('invitacionHiramVista', 'true');
+                }
+            }
+        })();
+
         // ========== CUENTA REGRESIVA ==========
         const fechaLimite = new Date(2026, 7, 4, 23, 59, 59);
 
@@ -398,6 +420,7 @@
         // ========== PARPADEO ADICIONAL CON CLIC (opcional) ==========
         document.body.addEventListener('click', () => {
             const contenedor = document.querySelector('.ojos-fondo');
+            if (!contenedor) return;
             contenedor.style.animation = 'none';
             void contenedor.offsetWidth;
             contenedor.style.animation = 'parpadeoClic 0.6s ease-in-out';
