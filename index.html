@@ -22,83 +22,91 @@
             overflow: hidden;
         }
 
-        /* ========== CONTENEDOR DE LOS DOS OJOS GIGANTES ========== */
+        /* ========== CONTENEDOR DE LOS OJOS MISTERIOSOS ========== */
         .ojos-fondo {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: min(90vw, 90vh);
-            height: min(50vw, 50vh);
+            width: min(92vw, 92vh);
+            height: min(40vw, 40vh);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 5%;
+            gap: 6%;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.2;
-            filter: drop-shadow(0 0 60px rgba(20, 80, 180, 0.3));
-            animation: parpadeoFondo 5s infinite ease-in-out;
+            opacity: 0.22;
+            filter: drop-shadow(0 0 50px rgba(15, 60, 150, 0.4));
+            animation: parpadeoFondo 6s infinite ease-in-out;
         }
 
         @keyframes parpadeoFondo {
-            0%, 90%, 100% { opacity: 0.2; }
-            95% { opacity: 0.04; }
+            0%, 88%, 100% { opacity: 0.22; }
+            94% { opacity: 0.02; }
         }
 
         .ojo-fondo {
             flex: 1;
-            aspect-ratio: 1 / 1;
-            max-width: 45%;
+            aspect-ratio: 2.2 / 1;
+            max-width: 46%;
             position: relative;
         }
 
+        /* Forma rasgada y acechante (Párpados entrecerrados) */
         .ojo-fondo .eye-shape {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(ellipse at center, rgba(8,10,14,0.95) 0%, rgba(2,2,4,0.95) 70%);
-            box-shadow: inset 0 0 80px rgba(0,0,0,0.95), 0 0 60px rgba(15,60,140,0.2);
+            background: radial-gradient(ellipse at center, rgba(6,8,12,0.98) 0%, rgba(2,3,6,0.98) 80%);
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.98), 0 0 40px rgba(10,50,130,0.25);
             overflow: hidden;
-            clip-path: ellipse(50% 46% at 50% 50%);
+            /* Recorte rasgado: estilo mirada inquisitiva */
+            clip-path: polygon(0% 50%, 15% 20%, 50% 12%, 85% 25%, 100% 50%, 85% 78%, 50% 88%, 15% 80%);
+            border-radius: 40% 40% 40% 40%;
         }
 
         .ojo-fondo .sclera {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 30% 40%, rgba(120,20,20,0.06), transparent 40%),
-                        radial-gradient(circle at 70% 60%, rgba(120,20,20,0.04), transparent 45%),
-                        radial-gradient(ellipse at center, #0a0b0d 0%, #030304 80%);
+            background: radial-gradient(ellipse at 50% 30%, rgba(8, 12, 20, 0.9) 0%, rgba(2, 3, 5, 0.98) 85%);
+        }
+
+        /* Sombra del párpado superior para dar profundidad y misterio */
+        .ojo-fondo .sombras-parpado {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2,4,8,0.9) 0%, rgba(2,4,8,0.3) 35%, transparent 60%, rgba(2,4,8,0.7) 100%);
+            z-index: 3;
         }
 
         .ojo-fondo .iris-container {
             position: absolute;
             left: 50%;
-            top: 50%;
-            width: 38%;
-            aspect-ratio: 1/1;
+            top: 52%;
+            width: 42%;
+            aspect-ratio: 1 / 1;
             transform: translate(-50%, -50%);
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 0 40px 10px rgba(30,110,220,0.45), 
-                        0 0 80px 30px rgba(20,80,180,0.2),
-                        inset 0 0 12px rgba(0,0,0,0.7);
+            box-shadow: 0 0 35px 8px rgba(30,110,220,0.5), 
+                        0 0 70px 20px rgba(15,60,150,0.3),
+                        inset 0 0 15px rgba(0,0,0,0.9);
         }
 
         .ojo-fondo .iris {
             position: absolute;
             inset: 0;
             border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, #000308 0%, #000308 18%, transparent 19%),
-                        repeating-conic-gradient(from 0deg, rgba(255,255,255,0.04) 0deg 2deg, rgba(0,0,0,0.08) 2deg 4deg),
-                        radial-gradient(circle at 50% 50%, #63b3ff 0%, #1e6fd9 22%, #0b3d91 46%, #041428 72%, #000 100%);
+            background: radial-gradient(circle at 50% 50%, #000205 0%, #000205 18%, transparent 19%),
+                        repeating-conic-gradient(from 0deg, rgba(255,255,255,0.03) 0deg 2deg, rgba(0,0,0,0.12) 2deg 4deg),
+                        radial-gradient(circle at 50% 50%, #4a9dec 0%, #175bb8 25%, #082d6e 50%, #030f28 75%, #000 100%);
             animation: irisRotateFondo 30s linear infinite;
         }
 
         @keyframes irisRotateFondo {
             0%   { filter: hue-rotate(0deg) brightness(1); }
-            50%  { filter: hue-rotate(6deg) brightness(1.15); }
+            50%  { filter: hue-rotate(8deg) brightness(1.1); }
             100% { filter: hue-rotate(0deg) brightness(1); }
         }
 
@@ -106,37 +114,30 @@
             position: absolute;
             left: 50%;
             top: 50%;
-            width: 34%;
-            aspect-ratio: 1/1;
+            width: 32%;
+            aspect-ratio: 1 / 1;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle at 45% 40%, #0a0d16 0%, #000000 70%);
+            background: #000000;
             border-radius: 50%;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.95);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.95);
         }
 
         .ojo-fondo .highlight {
             position: absolute;
-            width: 18%;
-            height: 18%;
-            top: 26%;
-            left: 30%;
-            background: rgba(255,255,255,0.7);
+            width: 14%;
+            height: 14%;
+            top: 24%;
+            left: 28%;
+            background: rgba(255,255,255,0.6);
             border-radius: 50%;
-            filter: blur(2px);
-            opacity: 0.8;
-        }
-        .ojo-fondo .highlight.small {
-            width: 7%;
-            height: 7%;
-            top: 56%;
-            left: 54%;
-            opacity: 0.3;
+            filter: blur(1.5px);
+            opacity: 0.7;
         }
 
         .ojo-fondo .vein {
             position: absolute;
-            background: rgba(160,40,40,0.12);
-            filter: blur(1.5px);
+            background: rgba(120,30,30,0.15);
+            filter: blur(1px);
             border-radius: 50%;
         }
 
@@ -152,8 +153,8 @@
             width: 160px;
             height: 160px;
             margin: 0 auto 38px;
-            animation: spin 14s linear infinite;
-            filter: drop-shadow(0 0 18px rgba(15, 60, 140, 0.8)) drop-shadow(0 0 45px rgba(8, 35, 100, 0.6)) drop-shadow(0 0 80px rgba(4, 18, 60, 0.45));
+            animation: spin 18s linear infinite;
+            filter: drop-shadow(0 0 18px rgba(30, 110, 220, 0.7)) drop-shadow(0 0 45px rgba(15, 60, 150, 0.5));
         }
         .gear svg {
             display: block;
@@ -218,7 +219,7 @@
         @media (max-width: 500px) {
             .ojos-fondo {
                 width: 95vw;
-                height: 55vw;
+                height: 45vw;
                 gap: 4%;
             }
             .gear { width: 120px; height: 120px; }
@@ -231,20 +232,19 @@
 </head>
 <body>
 
-    <!-- ========== DOS OJOS GIGANTES DE FONDO ========== -->
+    <!-- ========== DOS OJOS MISTERIOSOS Y RASGADOS ========== -->
     <div class="ojos-fondo" id="ojosFondo">
         <!-- Ojo izquierdo -->
         <div class="ojo-fondo">
             <div class="eye-shape">
                 <div class="sclera"></div>
-                <div class="vein" style="width:55%; height:2px; top:36%; left:8%; transform:rotate(8deg);"></div>
-                <div class="vein" style="width:38%; height:1.5px; top:60%; left:52%; transform:rotate(-12deg);"></div>
-                <div class="vein" style="width:30%; height:1.5px; top:28%; left:58%; transform:rotate(15deg);"></div>
+                <div class="sombras-parpado"></div>
+                <div class="vein" style="width:45%; height:2px; top:36%; left:8%; transform:rotate(8deg);"></div>
+                <div class="vein" style="width:38%; height:1.5px; top:65%; left:52%; transform:rotate(-12deg);"></div>
                 <div class="iris-container">
                     <div class="iris"></div>
                     <div class="pupil"></div>
                     <div class="highlight"></div>
-                    <div class="highlight small"></div>
                 </div>
             </div>
         </div>
@@ -252,99 +252,78 @@
         <div class="ojo-fondo">
             <div class="eye-shape">
                 <div class="sclera"></div>
-                <div class="vein" style="width:55%; height:2px; top:36%; left:8%; transform:rotate(8deg);"></div>
-                <div class="vein" style="width:38%; height:1.5px; top:60%; left:52%; transform:rotate(-12deg);"></div>
-                <div class="vein" style="width:30%; height:1.5px; top:28%; left:58%; transform:rotate(15deg);"></div>
+                <div class="sombras-parpado"></div>
+                <div class="vein" style="width:45%; height:2px; top:36%; left:8%; transform:rotate(8deg);"></div>
+                <div class="vein" style="width:38%; height:1.5px; top:65%; left:52%; transform:rotate(-12deg);"></div>
                 <div class="iris-container">
                     <div class="iris"></div>
                     <div class="pupil"></div>
                     <div class="highlight"></div>
-                    <div class="highlight small"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <!-- ========== CONTENEDOR PRINCIPAL ========== -->
     <div class="container" id="contenidoPrincipal">
         <div class="gear">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="metalBase" x1="15%" y1="0%" x2="85%" y2="100%">
-                        <stop offset="0%" stop-color="#8ab8e0" />
-                        <stop offset="12%" stop-color="#2a5fa0" />
-                        <stop offset="35%" stop-color="#0d3a78" />
-                        <stop offset="62%" stop-color="#071e50" />
-                        <stop offset="85%" stop-color="#03102e" />
-                        <stop offset="100%" stop-color="#020918" />
+                    <linearGradient id="metalEngrane" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#72a8e0" />
+                        <stop offset="25%" stop-color="#346cb0" />
+                        <stop offset="60%" stop-color="#143c78" />
+                        <stop offset="100%" stop-color="#091c3d" />
                     </linearGradient>
-                    <linearGradient id="dienteClaro" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#7aaad0" />
-                        <stop offset="30%" stop-color="#1c508a" />
-                        <stop offset="70%" stop-color="#0a2f62" />
-                        <stop offset="100%" stop-color="#040f2e" />
+
+                    <linearGradient id="biselMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#a8d0f8" stop-opacity="0.8" />
+                        <stop offset="50%" stop-color="#1e5296" stop-opacity="0.3" />
+                        <stop offset="100%" stop-color="#051026" stop-opacity="0.9" />
                     </linearGradient>
-                    <linearGradient id="dienteOscuro" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#1a5fa8" />
-                        <stop offset="50%" stop-color="#0a3570" />
-                        <stop offset="100%" stop-color="#030f2a" />
-                    </linearGradient>
-                    <radialGradient id="cuerpoRadial" cx="38%" cy="32%" r="65%">
-                        <stop offset="0%" stop-color="#3a7ab8" />
-                        <stop offset="20%" stop-color="#103a80" />
-                        <stop offset="50%" stop-color="#071e58" />
-                        <stop offset="80%" stop-color="#030f32" />
-                        <stop offset="100%" stop-color="#010718" />
+
+                    <radialGradient id="sombraCentro" cx="50%" cy="50%" r="50%">
+                        <stop offset="70%" stop-color="#040914" stop-opacity="0" />
+                        <stop offset="100%" stop-color="#02040a" stop-opacity="0.8" />
                     </radialGradient>
-                    <linearGradient id="anilloReflejo" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#4a90c8" stop-opacity="0.85" />
-                        <stop offset="40%" stop-color="#0d3a80" stop-opacity="0.6" />
-                        <stop offset="100%" stop-color="#020918" stop-opacity="0.4" />
-                    </linearGradient>
-                    <radialGradient id="nucleoGrad" cx="40%" cy="35%" r="60%">
-                        <stop offset="0%" stop-color="#5a9acc" />
-                        <stop offset="40%" stop-color="#0f3878" />
-                        <stop offset="100%" stop-color="#030e38" />
-                    </radialGradient>
-                    <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
-                        <feOffset dx="1" dy="2" result="offsetBlur" />
-                        <feComposite in="SourceGraphic" in2="offsetBlur" operator="over" />
-                    </filter>
                 </defs>
-                <circle cx="50" cy="50" r="30" fill="#020a1e" opacity="0.6" transform="translate(1.5, 2)" />
-                <circle cx="50" cy="50" r="28" fill="url(#cuerpoRadial)" />
-                <circle cx="50" cy="50" r="28" fill="none" stroke="url(#anilloReflejo)" stroke-width="2.2" />
-                <circle cx="50" cy="50" r="26.5" fill="none" stroke="rgba(180,225,255,0.18)" stroke-width="0.8" />
-                <g fill="url(#dienteClaro)" stroke="#041530" stroke-width="1.2">
-                    <rect x="44" y="6" width="12" height="22" rx="2.5" />
-                    <rect x="44" y="72" width="12" height="22" rx="2.5" />
-                    <rect x="6" y="44" width="22" height="12" rx="2.5" />
-                    <rect x="72" y="44" width="22" height="12" rx="2.5" />
-                    <rect x="18" y="16" width="12" height="22" rx="2.5" transform="rotate(45 24 27)" />
-                    <rect x="70" y="62" width="12" height="22" rx="2.5" transform="rotate(45 76 73)" />
-                    <rect x="18" y="62" width="12" height="22" rx="2.5" transform="rotate(-45 24 73)" />
-                    <rect x="70" y="16" width="12" height="22" rx="2.5" transform="rotate(-45 76 27)" />
+
+                <g fill="url(#metalEngrane)" stroke="#091c3d" stroke-width="0.8">
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(30 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(60 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(90 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(120 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(150 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(180 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(210 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(240 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(270 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(300 50 50)" />
+                    <path d="M44 4 L56 4 L54 18 L46 18 Z" transform="rotate(330 50 50)" />
+
+                    <circle cx="50" cy="50" r="36" />
                 </g>
-                <g fill="none" stroke="rgba(100,160,220,0.35)" stroke-width="0.7">
-                    <rect x="44.5" y="6.5" width="11" height="21" rx="2" />
-                    <rect x="44.5" y="72.5" width="11" height="21" rx="2" />
-                    <rect x="6.5" y="44.5" width="21" height="11" rx="2" />
-                    <rect x="72.5" y="44.5" width="21" height="11" rx="2" />
-                    <rect x="18.5" y="16.5" width="11" height="21" rx="2" transform="rotate(45 24 27)" />
-                    <rect x="70.5" y="62.5" width="11" height="21" rx="2" transform="rotate(45 76 73)" />
-                    <rect x="18.5" y="62.5" width="11" height="21" rx="2" transform="rotate(-45 24 73)" />
-                    <rect x="70.5" y="16.5" width="11" height="21" rx="2" transform="rotate(-45 76 27)" />
+
+                <circle cx="50" cy="50" r="36" fill="none" stroke="url(#biselMetal)" stroke-width="1.2" />
+
+                <g fill="#080c12" stroke="url(#biselMetal)" stroke-width="0.8">
+                    <path d="M 50 22 A 28 28 0 0 1 78 50 L 68 50 A 18 18 0 0 0 50 32 Z" />
+                    <path d="M 50 22 A 28 28 0 0 1 78 50 L 68 50 A 18 18 0 0 0 50 32 Z" transform="rotate(90 50 50)" />
+                    <path d="M 50 22 A 28 28 0 0 1 78 50 L 68 50 A 18 18 0 0 0 50 32 Z" transform="rotate(180 50 50)" />
+                    <path d="M 50 22 A 28 28 0 0 1 78 50 L 68 50 A 18 18 0 0 0 50 32 Z" transform="rotate(270 50 50)" />
                 </g>
-                <circle cx="50" cy="50" r="44" fill="none" stroke="url(#anilloReflejo)" stroke-width="1" opacity="0.5" />
-                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(40,90,180,0.12)" stroke-width="0.5" />
-                <circle cx="50" cy="50" r="13" fill="#04090f" />
-                <circle cx="50" cy="50" r="13" fill="none" stroke="rgba(30,80,160,0.6)" stroke-width="1.8" />
-                <circle cx="50" cy="50" r="11.5" fill="none" stroke="rgba(80,140,200,0.12)" stroke-width="0.6" />
-                <circle cx="50" cy="50" r="7" fill="url(#nucleoGrad)" />
-                <circle cx="50" cy="50" r="7" fill="none" stroke="rgba(60,130,200,0.45)" stroke-width="1" />
-                <circle cx="47" cy="47" r="2.2" fill="rgba(120,180,230,0.4)" />
-                <circle cx="46.5" cy="46.5" r="0.9" fill="rgba(180,220,255,0.65)" />
+
+                <circle cx="50" cy="50" r="18" fill="url(#metalEngrane)" stroke="#091c3d" stroke-width="0.8" />
+                <circle cx="50" cy="50" r="18" fill="none" stroke="url(#biselMetal)" stroke-width="1" />
+
+                <g fill="#080c12" stroke="url(#biselMetal)" stroke-width="0.6">
+                    <circle cx="50" cy="50" r="8" />
+                    <rect x="48.5" y="40" width="3" height="4" rx="0.5" />
+                </g>
+
+                <circle cx="50" cy="50" r="8" fill="url(#sombraCentro)" />
+                <circle cx="47" cy="47" r="1.5" fill="rgba(255,255,255,0.5)" />
             </svg>
         </div>
 
@@ -357,14 +336,8 @@
         </div>
 
         <div class="instruccion">
-            Marce... para bien o para mal los tiempos han llegado: los rumores, los encuentros, los cuchicheos, las invitaciones y los grupos
-            que pretenden formarse para competir por atraer el interes de los compañeros mediante, amistad, popularidad, proyectos, promesas o mentiras; 
-            Cualquier cosa por obtener un voto y tener la oportunidad de llegar para intentar ayudar o ayudarse, promesas de los mismos para hacerlo diferente
-            ilusiones de futuros imposibles y otros con ni siquiera eso; Aún así, las condiciones en las que nos encontramos nos olbiga a entrar al juego 
-            esperando ser algo diferente, real, honesto y alcanzable, porque el no hacerlo pareceria contrario a nuestros principios y hasta inmoral.
-
-            Necesitamos ser esas personas, las que con talento, visión, trabajo  y compromiso sirvan para cambiar lo que debe ser cambiado y
-            continuar lo que ha servido.<br />
+            Hiram... sabemos lo que te ah costado estar en la vida sindical, sabemos que eres un buen trabajador y excelente persona, nos gustaria que vivieras de cerca que no todo siempre sera lo mismo y formes parte de este cambio, 
+            si te interesa nuestra propuesta,<br />
             envía un correo con tu <strong>nombre</strong> , la palabra <strong>"SÍ" y tu numero de whatsapp</strong> a:
         </div>
 
@@ -373,31 +346,28 @@
     </div>
 
     <script>
-        // ========== BLOQUEO DE UNA SOLA VISTA (con acceso admin) ==========
+        // ========== BLOQUEO DE UNA SOLA VISTA ==========
         (function() {
-            // Si la URL contiene ?admin=engranaje2026, ignoramos el bloqueo
             const esAdmin = window.location.search.indexOf('admin=engranaje2026') !== -1;
             
             if (!esAdmin) {
                 const yaVio = localStorage.getItem('invitacionHiramVista');
                 if (yaVio) {
-                    // Ya entró antes: ocultamos todo y mostramos mensaje
                     document.getElementById('ojosFondo').style.display = 'none';
                     document.getElementById('contenidoPrincipal').innerHTML = `
                         <div style="display:flex; align-items:center; justify-content:center; height:80vh; color:#3a7ab8; font-family:'Segoe UI',sans-serif; text-align:center; flex-direction:column;">
                             <h2 style="font-weight:300; letter-spacing:3px; margin-bottom:15px;">ESTA INVITACIÓN YA FUE VISUALIZADA</h2>
                             <p style="color:#8aa0b8; font-size:1.1rem;">Gracias por tu interés.</p>
                         </div>`;
-                    return; // Detiene la ejecución del resto del script
+                    return;
                 } else {
-                    // Primera visita: guardamos la marca
                     localStorage.setItem('invitacionHiramVista', 'true');
                 }
             }
         })();
 
         // ========== CUENTA REGRESIVA ==========
-        const fechaLimite = new Date(2026, 7, 10, 23, 59, 59);
+        const fechaLimite = new Date(2026, 7, 4, 23, 59, 59);
 
         function actualizarContador() {
             const ahora = new Date();
@@ -423,7 +393,7 @@
         actualizarContador();
         setInterval(actualizarContador, 1000);
 
-        // ========== PARPADEO ADICIONAL CON CLIC (opcional) ==========
+        // ========== PARPADEO CON CLIC ==========
         document.body.addEventListener('click', () => {
             const contenedor = document.querySelector('.ojos-fondo');
             if (!contenedor) return;
@@ -431,15 +401,15 @@
             void contenedor.offsetWidth;
             contenedor.style.animation = 'parpadeoClic 0.6s ease-in-out';
             setTimeout(() => {
-                contenedor.style.animation = 'parpadeoFondo 5s infinite ease-in-out';
+                contenedor.style.animation = 'parpadeoFondo 6s infinite ease-in-out';
             }, 600);
         });
 
         const styleSheet = document.styleSheets[0];
         styleSheet.insertRule(`
             @keyframes parpadeoClic {
-                0%, 100% { opacity: 0.2; }
-                50%      { opacity: 0.03; }
+                0%, 100% { opacity: 0.22; }
+                50%      { opacity: 0.02; }
             }
         `, styleSheet.cssRules.length);
     </script>
