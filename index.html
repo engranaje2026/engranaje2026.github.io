@@ -61,7 +61,6 @@
             background: radial-gradient(ellipse at center, rgba(6,8,12,0.98) 0%, rgba(2,3,6,0.98) 80%);
             box-shadow: inset 0 0 60px rgba(0,0,0,0.98), 0 0 40px rgba(10,50,130,0.25);
             overflow: hidden;
-            /* Recorte rasgado: estilo mirada inquisitiva */
             clip-path: polygon(0% 50%, 15% 20%, 50% 12%, 85% 25%, 100% 50%, 85% 78%, 50% 88%, 15% 80%);
             border-radius: 40% 40% 40% 40%;
         }
@@ -72,7 +71,7 @@
             background: radial-gradient(ellipse at 50% 30%, rgba(8, 12, 20, 0.9) 0%, rgba(2, 3, 5, 0.98) 85%);
         }
 
-        /* Sombra del párpado superior para dar profundidad y misterio */
+        /* Sombra del párpado superior */
         .ojo-fondo .sombras-parpado {
             position: absolute;
             inset: 0;
@@ -193,9 +192,11 @@
         }
         .instruccion {
             color: #8aa0b8;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.7;
             margin: 10px 0 16px;
+            text-align: justify;
+            text-align-last: center;
         }
         .correo {
             color: #3a7ab8;
@@ -207,7 +208,7 @@
             border-radius: 40px;
             display: inline-block;
             border: 1px solid rgba(20, 60, 140, 0.3);
-            margin-top: 4px;
+            margin-top: 14px;
         }
         .footer {
             margin-top: 50px;
@@ -234,7 +235,6 @@
 
     <!-- ========== DOS OJOS MISTERIOSOS Y RASGADOS ========== -->
     <div class="ojos-fondo" id="ojosFondo">
-        <!-- Ojo izquierdo -->
         <div class="ojo-fondo">
             <div class="eye-shape">
                 <div class="sclera"></div>
@@ -248,7 +248,6 @@
                 </div>
             </div>
         </div>
-        <!-- Ojo derecho -->
         <div class="ojo-fondo">
             <div class="eye-shape">
                 <div class="sclera"></div>
@@ -336,16 +335,16 @@
         </div>
 
         <div class="instruccion">
-            Marce... para bien o para mal los tiempos han llegado, los rumores, los encuentros, los cuchicheos, la invitaciones y los grupos
-            que buscan formarse para competir por atraer el interes de los compañeros mediante: la amistadl, popularidad, proyectos, promesas
-            o mentiras; Cualquier cosa con tal de obtener el voto para llegar y ayudar o ayudarse, servir o servirse. En el futuro proximo veremos
-            a los mismos prometiedo hacer las cosas diferentes, a otros prometiendo futuros imposibles y a otros más con nisiquiera eso. Aún así, 
+            Marce... para bien o para mal los tiempos han llegado: los rumores, los encuentros, los cuchicheos, las invitaciones y los grupos
+            que buscan formarse para competir por atraer el interés de los compañeros mediante la amistad, popularidad, proyectos, promesas
+            o mentiras. Cualquier cosa con tal de obtener el voto para llegar y ayudar o ayudarse, servir o servirse. En el futuro próximo veremos
+            a los mismos prometiendo hacer las cosas diferentes, a otros prometiendo futuros imposibles y a otros más ni siquiera con eso. Aún así, 
             la situación actual casi obliga a entrar al juego, esperando ser algo diferente, real, honesto y alcanzable, porque el no 
-            hacerlo sería contrario a nuestros principios y posiblemente hasta inmoral.
+            hacerlo sería contrario a nuestros principios y posiblemente hasta inmoral.<br /><br />
 
-            Necesitamos ser esas personas, las que con visión, talento, trabajo y compromiso sirva para cambiar lo que debe ser cambiado, creando 
-            la sinergia y cooperación que tanto necesitamos. O... tu que piensas?
-            </div>
+            Necesitamos ser esas personas, las que con visión, talento, trabajo y compromiso sirvan para cambiar lo que debe ser cambiado, creando 
+            la sinergia y cooperación que tanto necesitamos. O... ¿tú qué piensas?
+        </div>
 
         <div class="correo">📩 engranaje2026@gmail.com</div>
         <div class="footer">✦</div>
@@ -357,7 +356,7 @@
             const esAdmin = window.location.search.indexOf('admin=engranaje2026') !== -1;
             
             if (!esAdmin) {
-                const yaVio = localStorage.getItem('invitacionHiramVista');
+                const yaVio = localStorage.getItem('invitacionMarceVista');
                 if (yaVio) {
                     document.getElementById('ojosFondo').style.display = 'none';
                     document.getElementById('contenidoPrincipal').innerHTML = `
@@ -367,7 +366,7 @@
                         </div>`;
                     return;
                 } else {
-                    localStorage.setItem('invitacionHiramVista', 'true');
+                    localStorage.setItem('invitacionMarceVista', 'true');
                 }
             }
         })();
